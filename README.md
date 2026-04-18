@@ -131,6 +131,4 @@ For detailed information on specific components, please refer to the files in th
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
----
-
-**Developed for the PBL II MP NeuroCognitive Insights Project.** 🚀
+🚀
