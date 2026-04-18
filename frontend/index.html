@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>NeuroCognitive Insights – Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-animation">
+      <div class="bg-shape bg-shape-1"></div>
+      <div class="bg-shape bg-shape-2"></div>
+      <div class="bg-shape bg-shape-3"></div>
+    </div>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="brand">
+          <div class="logo-circle">NC</div>
+          <div class="brand-text">
+            <h1>NeuroCognitive Insights</h1>
+            <p>ML-assisted screening for neurodegenerative and neurocognitive risk</p>
+          </div>
+        </div>
+        <div class="header-auth">
+          <span id="user-name" class="user-name" style="display: none;"></span>
+          <button id="logout-btn" class="auth-btn logout-btn" style="display: none;">Logout</button>
+          <a href="auth.html" id="login-link" class="auth-btn login-btn">Login / Register</a>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <section class="card hero-card">
+          <div class="hero-text">
+            <h2>AI‑assisted screening for complex brain and motor disorders</h2>
+            <p>
+              This prototype helps you explore multi‑modal risk scores for
+              neurodegenerative and neurocognitive diseases using clinical,
+              ELISA, and imaging-inspired features.
+            </p>
+            <p>
+              Choose a disease‑specific workspace to enter patient‑level data,
+              including MRI and ECG/EEG‑derived scores, and obtain an
+              interpretable risk estimate.
+            </p>
+            <div class="tagline">
+              <span>Research / educational use only – not a medical device</span>
+            </div>
+          </div>
+          <div class="hero-aside">
+            <strong>Supported disease workspaces</strong>
+            <div class="pill-row">
+              <span class="pill">Alzheimer's disease</span>
+              <span class="pill">Parkinson's disease</span>
+              <span class="pill">ALS</span>
+              <span class="pill">Huntington's disease</span>
+            </div>
+            <p>
+              Each workspace provides a tailored profile form, risk estimation
+              via the FastAPI backend, and optional fields to incorporate MRI
+              and ECG/EEG model scores.
+            </p>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Open a disease‑specific workspace</h2>
+          <div class="disease-grid">
+            <article class="disease-card">
+              <div>
+                <h3>Alzheimer's Disease</h3>
+                <p>
+                  Combine age, cognition, ELISA markers, and imaging‑derived
+                  scores to estimate Alzheimer's‑related risk.
+                </p>
+                <div class="disease-meta">
+                  <span class="chip">Cognitive decline</span>
+                  <span class="chip">Amyloid / tau</span>
+                  <span class="chip">MRI + EEG</span>
+                </div>
+              </div>
+              <div class="disease-link">
+                <a href="alzheimers.html">
+                  <button type="button">Open Alzheimer's workspace</button>
+                </a>
+              </div>
+            </article>
+
+            <article class="disease-card">
+              <div>
+                <h3>Parkinson's Disease</h3>
+                <p>
+                  Capture motor and non‑motor features alongside ELISA and
+                  imaging‑inspired inputs for Parkinsonian risk.
+                </p>
+                <div class="disease-meta">
+                  <span class="chip">Motor symptoms</span>
+                  <span class="chip">α‑syn biomarkers</span>
+                  <span class="chip">MRI + ECG</span>
+                </div>
+              </div>
+              <div class="disease-link">
+                <a href="parkinsons.html">
+                  <button type="button">Open Parkinson's workspace</button>
+                </a>
+              </div>
+            </article>
+
+            <article class="disease-card">
+              <div>
+                <h3>ALS</h3>
+                <p>
+                  Explore ALS‑oriented profiles that blend clinical, ELISA, and
+                  neuro‑imaging‑derived scores.
+                </p>
+                <div class="disease-meta">
+                  <span class="chip">Motor neuron</span>
+                  <span class="chip">ELISA markers</span>
+                  <span class="chip">MRI</span>
+                </div>
+              </div>
+              <div class="disease-link">
+                <a href="als.html">
+                  <button type="button">Open ALS workspace</button>
+                </a>
+              </div>
+            </article>
+
+            <article class="disease-card">
+              <div>
+                <h3>Huntington's Disease</h3>
+                <p>
+                  Use integrated features to approximate Huntington‑related
+                  neurocognitive and motor risk.
+                </p>
+                <div class="disease-meta">
+                  <span class="chip">Genetic context</span>
+                  <span class="chip">Cognition</span>
+                  <span class="chip">MRI + EEG</span>
+                </div>
+              </div>
+              <div class="disease-link">
+                <a href="huntington.html">
+                  <button type="button">Open Huntington's workspace</button>
+                </a>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span>NeuroCognitive ML Prototype</span>
+        <span>Built with FastAPI + vanilla JS</span>
+      </footer>
+    </div>
+  </body>
+</html>
+

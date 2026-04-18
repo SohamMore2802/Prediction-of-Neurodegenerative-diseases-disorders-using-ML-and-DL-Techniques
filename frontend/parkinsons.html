@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Parkinson's Workspace – NeuroCognitive Insights</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="brand">
+          <div class="logo-circle">NC</div>
+          <div class="brand-text">
+            <h1>Parkinson's Disease Workspace</h1>
+            <p>Motor and cognitive screening with ELISA, MRI, and ECG features</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <nav>
+            <a href="index.html" style="color:#9ca3af;font-size:0.9rem;text-decoration:none;">Back to home</a>
+          </nav>
+          <div class="header-controls">
+            <button class="icon-btn" id="theme-toggle" title="Toggle Dark/Light Mode">🌙</button>
+            <button class="icon-btn" id="shortcuts-guide" title="Keyboard Shortcuts (Ctrl+Shift+?)">⌨️</button>
+            <button class="icon-btn" id="settings-btn" title="Settings">⚙️</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Settings Panel -->
+      <div class="settings-panel" id="settings-panel">
+        <div class="settings-header">
+          <h3>Preferences</h3>
+          <button class="settings-close">✕</button>
+        </div>
+        <div class="settings-group">
+          <h4>Appearance</h4>
+          <div class="settings-option">
+            <label for="dark-mode-toggle">Dark Mode</label>
+            <button class="toggle-switch active" id="dark-mode-toggle"></button>
+          </div>
+          <div class="settings-option">
+            <label for="high-contrast">High Contrast</label>
+            <button class="toggle-switch" id="high-contrast"></button>
+          </div>
+        </div>
+        <div class="settings-group">
+          <h4>Features</h4>
+          <div class="settings-option">
+            <label for="auto-save-toggle">Auto-Save Form</label>
+            <button class="toggle-switch active" id="auto-save-toggle"></button>
+          </div>
+          <div class="settings-option">
+            <label for="session-warning">Session Timeout Warning</label>
+            <button class="toggle-switch active" id="session-warning"></button>
+          </div>
+        </div>
+        <div class="settings-group">
+          <h4>Data</h4>
+          <button class="secondary" onclick="localStorage.clear(); location.reload();">Clear All Data</button>
+        </div>
+      </div>
+
+      <!-- Keyboard Shortcuts Modal -->
+      <div class="shortcuts-modal" id="shortcuts-modal">
+        <div class="shortcuts-content">
+          <div class="shortcuts-header">
+            <h2>⌨️ Keyboard Shortcuts</h2>
+            <button class="shortcuts-close">✕</button>
+          </div>
+          <div class="shortcuts-list">
+            <div class="shortcut-item">
+              <div class="shortcut-key">
+                <span class="key-badge">Ctrl</span> + <span class="key-badge">Enter</span>
+              </div>
+              <div class="shortcut-desc">Run Assessment</div>
+            </div>
+            <div class="shortcut-item">
+              <div class="shortcut-key">
+                <span class="key-badge">Escape</span>
+              </div>
+              <div class="shortcut-desc">Close Modals</div>
+            </div>
+            <div class="shortcut-item">
+              <div class="shortcut-key">
+                <span class="key-badge">Ctrl</span> + <span class="key-badge">Shift</span> + <span class="key-badge">?</span>
+              </div>
+              <div class="shortcut-desc">Toggle This Guide</div>
+            </div>
+            <div class="shortcut-item">
+              <div class="shortcut-key">
+                <span class="key-badge">Tab</span>
+              </div>
+              <div class="shortcut-desc">Navigate Fields</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <main class="app-main">
+        <!-- Statistics Dashboard -->
+        <section class="card">
+          <div class="stats-dashboard" id="stats-dashboard">
+            <div class="stat-box">
+              <div class="stat-label">Total Assessments</div>
+              <div class="stat-value">0</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Average Risk</div>
+              <div class="stat-value">0%</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">High Risk Cases</div>
+              <div class="stat-value">0</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Success Rate</div>
+              <div class="stat-value">0%</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card layout">
+          <div class="layout-left">
+            <h2>Patient Profile</h2>
+            
+            <!-- Quick Templates -->
+            <div style="margin-bottom: 20px;">
+              <label style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #a5b4fc; font-weight: 600; margin-bottom: 10px; display: block;">📋 Quick Templates</label>
+              <div class="templates-grid">
+                <button type="button" class="template-btn" data-template="healthy">
+                  <span class="template-name">Healthy</span>
+                  <span class="template-desc">Normal baseline</span>
+                </button>
+                <button type="button" class="template-btn" data-template="early-stage">
+                  <span class="template-name">Early Stage</span>
+                  <span class="template-desc">Mild symptoms</span>
+                </button>
+                <button type="button" class="template-btn" data-template="mid-stage">
+                  <span class="template-name">Mid Stage</span>
+                  <span class="template-desc">Moderate risk</span>
+                </button>
+                <button type="button" class="template-btn" data-template="high-risk">
+                  <span class="template-name">High Risk</span>
+                  <span class="template-desc">Critical case</span>
+                </button>
+              </div>
+            </div>
+
+            <form id="prediction-form" class="form-grid">
+              <input type="hidden" name="disorder_type" value="parkinsons" />
+
+              <div class="form-field">
+                <label for="age">Age <span class="help-icon" data-tooltip="Patient age in years (18-120)">?</span></label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  min="18"
+                  max="120"
+                  required
+                  placeholder="e.g. 68"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="sex">Sex</label>
+                <select id="sex" name="sex" required>
+                  <option value="" disabled selected>Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other / Prefer not to say</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="elisa_biomarker_1">
+                  ELISA Biomarker 1
+                  <span class="hint">(0–3, e.g. α‑synuclein)</span>
+                </label>
+                <input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  max="3"
+                  id="elisa_biomarker_1"
+                  name="elisa_biomarker_1"
+                  required
+                  placeholder="e.g. 1.2"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="elisa_biomarker_2">
+                  ELISA Biomarker 2
+                  <span class="hint">(0–3, complementary marker)</span>
+                </label>
+                <input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  max="3"
+                  id="elisa_biomarker_2"
+                  name="elisa_biomarker_2"
+                  required
+                  placeholder="e.g. 0.8"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="cognitive_score">
+                  Cognitive Score
+                  <span class="hint">(0–100, e.g. MoCA / MMSE)</span>
+                </label>
+                <input
+                  type="number"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                  id="cognitive_score"
+                  name="cognitive_score"
+                  required
+                  placeholder="e.g. 26.0"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="mri_severity_score">
+                  MRI Severity Score
+                  <span class="hint">(0–1, e.g. basal ganglia / midbrain changes)</span>
+                </label>
+                <input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  max="1"
+                  id="mri_severity_score"
+                  name="mri_severity_score"
+                  required
+                  placeholder="e.g. 0.40"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="ecg_eeg_anomaly_score">
+                  ECG / EEG Anomaly Score
+                  <span class="hint">(0–1, autonomic / EEG rhythm changes)</span>
+                </label>
+                <input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  max="1"
+                  id="ecg_eeg_anomaly_score"
+                  name="ecg_eeg_anomaly_score"
+                  required
+                  placeholder="e.g. 0.25"
+                />
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" id="submit-btn">Run Parkinson's Assessment</button>
+                <button type="button" id="reset-btn" class="secondary">
+                  Reset
+                </button>
+                <button type="button" id="demo-btn" class="demo-btn">
+                  ⚡ Demo Data
+                </button>
+              </div>
+
+              <p class="disclaimer">
+                This workspace is for research and educational use only and does not
+                provide medical advice, diagnosis, or treatment.
+              </p>
+              <div class="autosave-indicator">
+                <div class="autosave-dot"></div>
+                <span>Auto-saving enabled</span>
+              </div>
+            </form>
+
+            <div id="history-container"></div>
+          </div>
+
+          <div class="layout-right">
+            <h2>Prediction Output</h2>
+
+            <div id="result-card" class="result-card result-empty">
+              <p class="placeholder">
+                Enter patient data on the left and run the assessment to see results here.
+              </p>
+            </div>
+
+            <div id="recommendation-card" class="recommendation-card hidden">
+            </div>
+
+            <div class="action-buttons">
+              <button type="button" id="export-btn" class="secondary" disabled>
+                Export Results
+              </button>
+              <button type="button" id="toggle-debug" class="tertiary">
+                Show Model Details
+              </button>
+            </div>
+
+            <div id="debug-card" class="debug-card hidden">
+              <pre id="debug-json"></pre>
+            </div>
+
+            <!-- Risk Trends Chart -->
+            <div style="margin-top: 24px;">
+              <h3 style="margin: 0 0 16px; color: #e0e7ff; font-size: 1rem;">📈 Risk Score Trends</h3>
+              <div class="trends-container" id="trends-container">
+                <div class="trends-empty">Run multiple assessments to see trends</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <span>NeuroCognitive ML Prototype – Parkinson's</span>
+        <span>Built with FastAPI + vanilla JS</span>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="export-history.js"></script>
+  </body>
+</html>
+
